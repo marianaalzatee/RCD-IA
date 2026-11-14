@@ -1,0 +1,24 @@
+RCD IA - archivos actualizados
+
+Archivos incluidos:
+- app.py: aplicación Streamlit con el módulo de inteligencia territorial y mensajes de error de actualización más claros.
+- modelo_ia.py: DBSCAN y análisis exploratorio de cercanía a gestores.
+- logica_rcd.py: funciones de lectura, limpieza y validación de datos.
+- actualizacion_datos.py: descarga y validación segura de generadores; carga validada de GeoJSON de gestores.
+- requirements_rcd_ia.txt: dependencias.
+
+INSTALACIÓN
+1. Haz una copia de seguridad de tu carpeta actual del proyecto.
+2. Reemplaza los archivos app.py, modelo_ia.py, logica_rcd.py, actualizacion_datos.py y requirements_rcd_ia.txt por los de esta entrega.
+3. Conserva tus carpetas datos/ y resultados/ y los archivos que ya tienes allí. No los borres.
+4. Ejecuta la aplicación como lo haces normalmente: streamlit run app.py
+
+ACTUALIZACIÓN DE GENERADORES Y ERROR SSL
+La descarga mantiene activa la verificación SSL. El error observado indica que el servidor de la SDA está presentando un certificado que Python no puede validar. La aplicación ahora muestra un mensaje comprensible y conserva la última base válida.
+
+No se recomienda usar verify=False ni desactivar la validación SSL.
+Si la SDA/administrador entrega un certificado CA institucional válido en formato PEM, configura la variable de entorno RCDIA_CA_BUNDLE con la ruta completa a ese archivo. Ejemplo en Windows PowerShell:
+$env:RCDIA_CA_BUNDLE = "C:\\certificados\\sda-ca.pem"
+Luego inicia Streamlit desde esa misma ventana.
+
+La carga manual de gestores sigue funcionando igual. El análisis DBSCAN, las rutas, las recomendaciones y las emisiones se mantienen.

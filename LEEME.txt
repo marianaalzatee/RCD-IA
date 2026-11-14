@@ -1,0 +1,42 @@
+RCD IA – ACTUALIZACIÓN MANUAL DE GENERADORES COMO ALTERNATIVA SEGURA
+
+¿QUÉ RESUELVE?
+El servicio geográfico de la SDA está presentando un problema de confianza SSL.
+Esta versión mantiene la verificación SSL activada y agrega una alternativa para
+cargar manualmente un GeoJSON actualizado de generadores. No se usa verify=False.
+
+ARCHIVOS INCLUIDOS
+- app.py: aplicación Streamlit con la nueva sección de carga manual de generadores.
+- actualizacion_datos.py: descarga automática segura y validación/carga manual.
+- modelo_ia.py y logica_rcd.py: módulos requeridos por la aplicación.
+- requirements_rcd_ia.txt: dependencias del proyecto.
+
+CÓMO INSTALAR
+1. Detén Streamlit con Ctrl+C.
+2. Haz una copia de seguridad de tu carpeta del proyecto (especialmente app.py y datos/).
+3. Descomprime este ZIP.
+4. Copia los cuatro archivos .py a la carpeta principal del proyecto y acepta
+   reemplazar los archivos existentes.
+5. No reemplaces ni borres la carpeta datos/ ni resultados/.
+6. En la terminal, activa tu entorno virtual y ejecuta:
+   python -m pip install -r requirements_rcd_ia.txt
+7. Inicia la aplicación:
+   python -m streamlit run app.py
+
+CÓMO ACTUALIZAR GENERADORES
+1. Abre «Actualización de información».
+2. Puedes intentar primero «Actualizar generadores desde SDA». La conexión
+   automática seguirá validando el certificado SSL.
+3. Si vuelve a fallar, usa «Selecciona el GeoJSON actualizado de generadores».
+4. Selecciona un archivo .geojson o .json que sea un GeoJSON FeatureCollection,
+   con geometrías Point y coordenadas longitud/latitud de Bogotá.
+5. Pulsa «Validar e incorporar generadores».
+6. La aplicación comprobará que haya al menos 10 puntos dentro del área esperada
+   de Bogotá. Solo después reemplazará la base anterior y registrará la operación.
+
+IMPORTANTE
+- Si el archivo no pasa la validación, la base anterior permanece intacta.
+- El GeoJSON debe estar en coordenadas geográficas (longitud/latitud, WGS84/EPSG:4326).
+- Un PDF o una tabla Excel no se puede cargar directamente como GeoJSON.
+- La carga manual no consulta la SDA: incorpora el archivo oficial que proporcione
+  el usuario/administrador. Conviene verificar su fecha y procedencia antes de subirlo.
